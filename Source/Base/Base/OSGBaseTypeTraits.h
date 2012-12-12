@@ -109,7 +109,7 @@ struct TypeTraits : public TypeTraitsBase
 };
 
 #if defined(__hpux)
-template <class LookupTypeT> 
+template <class LookupTypeT>
 const bool TypeTraits<LookupTypeT>::IsPOD;
 #endif
 
@@ -322,7 +322,7 @@ struct TypeTraits<UInt16> : public TypeTraitsBase
     {
         return 1;
     }
-    
+
     static        UInt16             getMax        (void)
     {
         return std::numeric_limits<UInt16>::max();
@@ -470,8 +470,8 @@ struct TypeTraits<UInt32> : public TypeTraitsBase
         return 1;
     }
 
-    static        UInt32             getMax        (void) 
-    { 
+    static        UInt32             getMax        (void)
+    {
         return std::numeric_limits<UInt32>::max();
     }
 
@@ -543,7 +543,7 @@ struct TypeTraits<Int32> : public TypeTraitsBase
 
     static        Int32              getMax        (void)
     {
-        return std::numeric_limits<Int32>::max(); 
+        return std::numeric_limits<Int32>::max();
     }
 
     static        Int32              getMin        (void)
@@ -611,7 +611,7 @@ struct TypeTraits<UInt64> : public TypeTraitsBase
     static const  UInt64             Zero        = 0x0000000000000000;
     static const  UInt64             One         = 0x0000000000000001;
 #endif
- 
+
 
 
     static        UInt64             getZeroElement(void)
@@ -625,7 +625,7 @@ struct TypeTraits<UInt64> : public TypeTraitsBase
     }
 
 
-    static        UInt64             getMax        (void)         
+    static        UInt64             getMax        (void)
     {
         return std::numeric_limits<UInt64>::max();
     }
@@ -675,7 +675,7 @@ struct TypeTraits<UInt64> : public TypeTraitsBase
     {
         Char8 buffer[25];
 #ifdef OSG_LINUX_TYPES
-        sprintf(buffer, "%"PRIu64, val );
+        sprintf(buffer, "%" PRIu64, val );
 #else
         sprintf(buffer, "%llu", val);
 #endif
@@ -766,7 +766,7 @@ struct TypeTraits<Int64> : public TypeTraitsBase
         Char8 buffer[25];
 
 #ifdef OSG_LINUX_TYPES
-        sprintf(buffer, "%"PRIi64, val);
+        sprintf(buffer, "%" PRIi64, val);
 #else
         sprintf(buffer, "%lli", val);
 #endif
@@ -775,7 +775,7 @@ struct TypeTraits<Int64> : public TypeTraitsBase
     }
 };
 
-/*! \ingroup GrpBaseBaseBaseTypeTraits 
+/*! \ingroup GrpBaseBaseBaseTypeTraits
 */
 
 template <>
@@ -840,7 +840,7 @@ struct TypeTraits<Real16> : public TypeTraitsBase
 };
 
 
-/*! \ingroup GrpBaseBaseBaseTypeTraits 
+/*! \ingroup GrpBaseBaseBaseTypeTraits
  */
 
 template <>
@@ -1057,8 +1057,8 @@ struct TypeTraits<GLenum> : public TypeTraitsBase
         return 1;
     }
 
-    static        GLenum             getMax        (void) 
-    { 
+    static        GLenum             getMax        (void)
+    {
         return 0xFFFFFFFF;
     }
 

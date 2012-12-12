@@ -1,0 +1,133 @@
+# Contrib
+
+Import('*')
+import os
+import SCons.Node.FS
+
+ContribDirs = []
+
+def InstallShaderFragments(env):
+    env = env.Copy()
+    dest = env['PREFIX'].Dir('include').Dir('OpenSG').Dir('shaderfragments')
+
+    d = Dir(os.path.join('CGFXMaterial2','shaderfragments'))
+    FS = SCons.Node.FS.default_fs
+    old_fs = FS.getcwd()
+    FS.chdir(d, change_os_dir=0)
+    fragments = map(File, Glob('*.cgh'))
+    FS.chdir(old_fs, change_os_dir=0)
+
+    env.Install(dest, fragments)
+
+
+if _po.getOption('contrib_cgchunk'):
+    if _po.getOption('cg'):
+        ContribDirs.append(Dir('CGChunk'))
+    else:
+        print 'Contrib CGChunk needs cg lib, add cg=<path> to cmd line.'
+
+if _po.getOption('contrib_cgfxmaterial'):
+    if _po.getOption('cg'):
+        ContribDirs.append(Dir('CGFXMaterial'))
+    else:
+        print 'Contrib CGFXMaterial needs cgfx lib, add cg=<path> to cmd line.'
+
+if _po.getOption('contrib_cgfxmaterial2'):
+    if _po.getOption('cg'):
+        ContribDirs.append(Dir('CGFXMaterial2'))
+    else:
+        print 'Contrib CGFXMaterial2 needs cgfx lib, add cg=<path> to cmd line.'
+
+if _po.getOption('contrib_ply'):
+    ContribDirs.append(Dir('PLY'))
+
+if _po.getOption('contrib_drawfunctorcore'):
+    ContribDirs.append(Dir('DrawFunctorCore'))
+
+if _po.getOption('contrib_terrain'):
+    ContribDirs.append(Dir('Terrain'))
+
+if _po.getOption('contrib_cal3d'):
+    ContribDirs.append(Dir('Cal3D'))
+
+if _po.getOption('contrib_physics'):
+    ContribDirs.append(Dir('Physics'))
+
+if _po.getOption('contrib_performer_loader'):
+    ContribDirs.append(Dir('PerformerLoader'))
+
+if _po.getOption('contrib_rhino3d_loader'):
+    ContribDirs.append(Dir('Rhino3DLoader'))
+
+headers, sources, tests, generated = ProcessDirs(ContribDirs)
+# don't forget the OSGContribDef.h file.
+headers += Glob('OSG*.h')
+InstallHeaders(env, headers)
+
+if _po.getOption('contrib_cgfxmaterial2'):
+    InstallShaderFragments(env)
+
+def custom(env):
+
+    if (_po.getOption('contrib_cgchunk') or _po.getOption('contrib_cgfxmaterial')) and _po.getOption('cg'):
+        env.Append(CPPPATH=env.get('CGCPPPATH'))
+        env.Append(LIBPATH=env.get('CGLIBPATH'))
+        env.Append(LIBS=env.get('OSG_CG_LIBS'))
+        if _po.getOption('tests'):
+            env.Append(LIBS=env.get('OSG_WINDOW_GLUT_LIBS', []))  # needed for test programs
+        
+    if _po.getOption('contrib_performer_loader'):
+        if isinstance(_po.getOption('contrib_performer_loader'), str):
+                performer_cpp_path = [os.path.join(_po.getOption('contrib_performer_loader'), 'include'),
+                                      os.path.join(_po.getOption('contrib_performer_loader'), 'include', 'Performer')]
+                performer_lib_path = [os.path.join(_po.getOption('contrib_performer_loader'), 'lib')]
+                env.Append(CPPPATH=performer_cpp_path)
+                env.Append(LIBPATH=performer_lib_path)
+                if env.get('PLATFORM') == 'win32':
+                    env.Append(LIBS=['libpf', 'libpfdu-util'])
+                else:
+                    env.Append(LIBS=['pf', 'pfutil', 'pfdu'])
+
+    if _po.getOption('contrib_rhino3d_loader'):
+        if isinstance(_po.getOption('contrib_rhino3d_loader'), str):
+                opennurbs_cpp_path = [os.path.join(_po.getOption('contrib_rhino3d_loader'), 'include')]
+                opennurbs_lib_path = [os.path.join(_po.getOption('contrib_rhino3d_loader'), 'lib')]
+                env.Append(CPPPATH=opennurbs_cpp_path)
+                env.Append(LIBPATH=opennurbs_lib_path)
+                if env.get('PLATFORM') == 'win32':
+                    env.Append(LIBS=['opennurbs', 'Rpcrt4', 'Advapi32'])
+                else:
+                    env.Append(LIBS=['opennurbs'])
+
+    if _po.getOption('contrib_cal3d'):
+        if isinstance(_po.getOption('contrib_cal3d'), str):
+                cal3d_cpp_path = [os.path.join(_po.getOption('contrib_cal3d'), 'include')]
+                cal3d_lib_path = [os.path.join(_po.getOption('contrib_cal3d'), 'lib')]
+                env.Append(CPPPATH=cal3d_cpp_path)
+                env.Append(LIBPATH=cal3d_lib_path)
+                env.Append(LIBS=['cal3d'])
+
+    if _po.getOption('contrib_physics'):
+        if isinstance(_po.getOption('contrib_physics'), str):
+                physics_cpp_path = [os.path.join(_po.getOption('contrib_physics'), 'include')]
+                physics_lib_path = [os.path.join(_po.getOption('contrib_physics'), 'lib/releasedll')]
+                env.Append(CPPPATH=physics_cpp_path)
+                env.Append(LIBPATH=physics_lib_path)
+                env.Append(LIBS=['ode'])
+
+    env.Append(LIBS=env.get('OSG_SYSTEM_LIBS'))
+
+if len(sources) > 0:
+    BuildLibrary(tc, 'OSGContrib', sources,
+                 updates=[custom, OpenSGLibrary(['OSGBase', 'OSGSystem'])],
+                 CPPDEFINES=['OSG_BUILD_DLL', 'OSG_COMPILECONTRIBLIB'],
+                 CPPPATH=ExpandCPPPath([Dir('.')] + SystemDirs + BaseDirs + ContribDirs, generated))
+
+if _po.getOption('tests'):
+    # create test programs
+    for testsource in tests:
+        target = testsource.name[:-4] # get leafname and remove .cpp
+        BuildProgram(tc, target, [testsource], tools=[],
+                     updates=[custom, OpenSGLibrary(['OSGWindowGLUT', 'OSGSystem', 'OSGBase', 'OSGContrib'])],
+                     CPPPATH=['.', env['PREFIX'].Dir('include'), env['PREFIX'].Dir('include/OpenSG')],
+                     CPPDEFINES = ['OSG_BUILD_DLL', 'OSG_WITH_GLUT'])

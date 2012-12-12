@@ -1,0 +1,53 @@
+import os
+
+Import('*')
+
+bison_simple = None
+flex_lexer = None
+
+if env['PLATFORM'] == 'win32':
+    bison_simple = Install('.', '../../../../../../dist/win/bin/bison.simple')
+    flex_lexer = Install('.', '../../../../../../VSBuild/VS6/FlexLexer.h')
+#else:
+#    Install('.', '/usr/include/FlexLexer.h')
+
+# Hm, straight up Command() doesn't work
+flex = env.Command(
+    ['lex.OSGScanParseSkel_.cc'],
+    ['OSGScanParseSkel.lpp'],
+    'cd $TARGET.dir && flex -+ -POSGScanParseSkel_ ${SOURCES[0].srcpath.abspath}')
+
+if env['PLATFORM'] == 'win32':
+    Depends(flex, flex_lexer)
+
+env.Command(
+    'OSGScanParseSkel.lex.cpp',
+    'lex.OSGScanParseSkel_.cc',
+    r'sed -e "s/\(yy\)\(text_ptr\)/OSGScanParseSkel_\2/g"' + \
+    r'    -e "s/\&cin/\&std::cin/g"' + \
+    r'    -e "s/\&cout/\&std::cout/g"' + \
+    r'    -e "s/cerr/std::cerr/g"' + \
+    r'    -e "s/class istream;/#include <iosfwd>/g"' + \
+    r'    -e "s/istream\*/\std::istream\*/g"' + \
+    r'    -e "s/ostream\*/\std::ostream\*/g"' + \
+    r'    -e "s/std::std::/std::/g"' + \
+    " < ${SOURCES[0]} > ${TARGETS[0]}")
+
+# Hm, straight up Command() doesn't work
+bison = env.Command(
+    ['OSGScanParseSkel_.tab.c', 'OSGScanParseSkel_.tab.h', 'OSGScanParseSkel_.output'],
+    ['OSGScanParseSkel.y'],
+    'cd $TARGET.dir && bison -d -l -v -pOSGScanParseSkel_ -bOSGScanParseSkel_ ${SOURCES[0].srcpath.abspath}')
+
+if env['PLATFORM'] == 'win32':
+    Depends(bison, bison_simple)
+
+InstallAs('OSGScanParseSkel.tab.cpp', 'OSGScanParseSkel_.tab.c')
+InstallAs('OSGScanParseSkel.tab.h',   'OSGScanParseSkel_.tab.h')
+InstallAs('OSGScanParseSkel.output',  'OSGScanParseSkel_.output')
+
+# Make sure to Glob after dependencies are specified.
+Add(
+    Glob('OSG*.h') + Glob('OSG*.inl'),
+    Glob('OSG*.cpp'),
+    Glob('test*.cpp'))

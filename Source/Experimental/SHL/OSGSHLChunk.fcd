@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="SHLChunk"
+	parent="ShaderChunk"
+	library="System"
+	pointerfieldtypes="both"
+	structure="concrete"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+	decoratable="false"
+	useLocalIncludes="false"
+>
+	<Field
+		name="cgFrontEnd"
+		type="bool"
+		cardinality="single"
+		visibility="external"
+		defaultValue="false"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="pointSize"
+		type="bool"
+		cardinality="single"
+		visibility="external"
+		defaultValue="false"
+		access="public"
+	>
+	Flag to set whether the shader can change the point size.
+	</Field>
+	<Field
+		name="programParameterNames"
+		type="GLenum"
+		cardinality="multi"
+		visibility="external"
+		defaultHeader="&lt;OSGGL.h&gt;"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="programParameterValues"
+		type="UInt32"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="GLId"
+		type="UInt32"
+		cardinality="single"
+		visibility="internal"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="IgnoreGLForAspect"
+		type="Int32"
+		cardinality="single"
+		visibility="internal"
+		defaultValue="-1"
+		access="public"
+	>
+	</Field>
+    <Field
+        name="UnknownParameterWarning"
+        type="bool"
+        cardinality="single"
+        visibility="external"
+        defaultValue="true"
+        access="public"
+    >
+    Whether to warn about unknown/unused paramters.
+    </Field>
+</FieldContainer>

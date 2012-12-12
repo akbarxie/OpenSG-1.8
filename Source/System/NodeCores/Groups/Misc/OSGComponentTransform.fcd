@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+
+<FieldContainer
+	name="ComponentTransform"
+	parent="Transform"
+	library="System"
+	structure="concrete"
+	pointerfieldtypes="both"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+>
+	<Field
+		name="center"
+		type="Vec3f"
+		cardinality="single"
+		visibility="external"
+	>
+	</Field>
+	<Field
+		name="rotation"
+		type="Quaternion"
+		cardinality="single"
+		visibility="external"
+	>
+	</Field>
+	<Field
+		name="scale"
+		type="Vec3f"
+		cardinality="single"
+		visibility="external"
+	>
+	</Field>
+	<Field
+		name="scaleOrientation"
+		type="Quaternion"
+		cardinality="single"
+		visibility="external"
+	>
+	</Field>
+	<Field
+		name="translation"
+		type="Vec3f"
+		cardinality="single"
+		visibility="external"
+	>
+	</Field>
+</FieldContainer>

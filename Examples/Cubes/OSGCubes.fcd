@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="Cubes"
+	parent="MaterialDrawable"
+	library="My"
+	pointerfieldtypes="both"
+	systemcomponent="false"
+	parentsystemcomponent="true"
+	structure="concrete"
+>
+	<Field
+		name="position"
+		type="Pnt3f"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	The cubes' positions.
+	</Field>
+	<Field
+		name="length"
+		type="Real32"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	The cubes' sizes.
+	</Field>
+	<Field
+		name="color"
+		type="Color3f"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	The cubes' colors.
+	</Field>
+</FieldContainer>

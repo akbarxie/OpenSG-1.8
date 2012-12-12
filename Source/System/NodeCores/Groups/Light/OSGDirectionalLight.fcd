@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<FieldContainer
+	name="DirectionalLight"
+	parent="Light"
+	library="System"
+	structure="concrete"
+	pointerfieldtypes="none"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+>
+	<Field
+		name="direction"
+		type="Vec3f"
+		cardinality="single"
+		visibility="external"
+                defaultValue="0,0,1"
+	>
+	</Field>
+</FieldContainer>

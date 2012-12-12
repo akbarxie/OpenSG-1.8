@@ -1,0 +1,91 @@
+
+ac_gdz_package_order="BaseLib SystemLib"
+ac_gdz_package_order_test="BaseTest SystemTest"
+
+ac_gdz_packages="Base System WindowX WindowWIN32 WindowCarbon WindowCocoa WindowCoreGL WindowQT WindowQT4 WindowGLUT"
+
+#Experimental "
+
+ac_gdz_package_name_Base="Base" 
+ac_gdz_package_dirs_Base="Base/Base@ Base/Field@ Base/Functors@ Base/StringConversion@ Base/Network/Base@ Base/Network/Socket@ Base/Xml@ Base/OSHelpers/darwin@darwin" 
+ac_gdz_package_inc_dep_Base="GL" 
+ac_gdz_package_link_dep_Base="" 
+ac_gdz_package_testinc_dep_Base="" 
+ac_gdz_package_testlink_dep_Base="GL" 
+ac_gdz_package_def_Base="OSG_COMPILEBASELIB" 
+
+ac_gdz_package_name_System="System" 
+ac_gdz_package_dirs_System="System/Action@ System/Action/DrawAction@ System/Action/RenderAction@ System/Action/IntersectAction@ System/FieldContainer@ System/FieldContainer/Impl@ System/Image@ System/FileIO/Base@ System/Material@ System/NodeCores/Groups/Base@ System/NodeCores/Groups/Misc@ System/NodeCores/Groups/Light@ System/NodeCores/Drawables/Base@ System/NodeCores/Drawables/Geometry@ System/NodeCores/Drawables/Particles@ System/NodeCores/Drawables/Misc@ System/NodeCores/Drawables/VolRen@ System/RenderingBackend@ System/State@ System/Window@ System/FileIO/ScanParseSkel@ System/Statistics@ System/Cluster/Base@ System/Cluster/Server@ System/Cluster/Window/Base@ System/Cluster/Window/MultiDisplay@ System/Cluster/Window/SortFirst@ System/Cluster/Window/SortLast@ System/Cluster/Window/BalancedMultiWindow@ System/GraphOp@ System/Text@"
+ac_gdz_package_inc_dep_System="@Base@ GL" 
+ac_gdz_package_link_dep_System="BaseLib TIF JPG JASPER PNG MNG IMF TEXT" 
+ac_gdz_package_testinc_dep_System="GLUT WindowSystem/GLUT Base/Functors" 
+ac_gdz_package_testlink_dep_System="WindowGLUTLib GLUT GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_System="OSG_COMPILESYSTEMLIB" 
+
+ac_gdz_package_name_WindowX="WindowX" 
+ac_gdz_package_dirs_WindowX="WindowSystem/X@" 
+ac_gdz_package_inc_dep_WindowX="@Base@ @System@ GL" 
+ac_gdz_package_link_dep_WindowX="SystemLib BaseLib GL" 
+ac_gdz_package_testinc_dep_WindowX="" 
+ac_gdz_package_testlink_dep_WindowX="GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_WindowX="OSG_COMPILEWINDOWXLIB" 
+
+ac_gdz_package_name_WindowWIN32="WindowWIN32" 
+ac_gdz_package_dirs_WindowWIN32="WindowSystem/WIN32@" 
+ac_gdz_package_inc_dep_WindowWIN32="@Base@ @System@ GLUT GL" 
+ac_gdz_package_link_dep_WindowWIN32="SystemLib BaseLib GL" 
+ac_gdz_package_testinc_dep_WindowWIN32="" 
+ac_gdz_package_testlink_dep_WindowWIN32="GLUT GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_WindowWIN32="OSG_COMPILEWINDOWWIN32LIB" 
+
+ac_gdz_package_name_WindowCarbon="WindowCarbon" 
+ac_gdz_package_dirs_WindowCarbon="WindowSystem/Carbon@" 
+ac_gdz_package_inc_dep_WindowCarbon="@Base@ @System@ GL" 
+ac_gdz_package_link_dep_WindowCarbon="SystemLib BaseLib CARBON" 
+ac_gdz_package_testinc_dep_WindowCarbon="" 
+ac_gdz_package_testlink_dep_WindowCarbon="GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_WindowCarbon="OSG_COMPILEWINDOWCARBONLIB" 
+
+ac_gdz_package_name_WindowCocoa="WindowCocoa" 
+ac_gdz_package_dirs_WindowCocoa="WindowSystem/Cocoa@" 
+ac_gdz_package_inc_dep_WindowCocoa="@Base@ @System@ GL" 
+ac_gdz_package_link_dep_WindowCocoa="SystemLib BaseLib COCOA" 
+ac_gdz_package_testinc_dep_WindowCocoa="" 
+ac_gdz_package_testlink_dep_WindowCocoa="GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_WindowCocoa="OSG_COMPILEWINDOWCOCOALIB" 
+
+ac_gdz_package_name_WindowCoreGL="WindowCoreGL" 
+ac_gdz_package_dirs_WindowCoreGL="WindowSystem/CoreGL@" 
+ac_gdz_package_inc_dep_WindowCoreGL="@Base@ @System@ GL" 
+ac_gdz_package_link_dep_WindowCoreGL="SystemLib BaseLib COREGL" 
+ac_gdz_package_testinc_dep_WindowCoreGL="" 
+ac_gdz_package_testlink_dep_WindowCoreGL="GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_WindowCoreGL="OSG_COMPILEWINDOWCOREGLLIB" 
+
+ac_gdz_package_name_WindowQT="WindowQT" 
+ac_gdz_package_dirs_WindowQT="WindowSystem/QT@" 
+ac_gdz_package_inc_dep_WindowQT="@Base@ @System@ WindowSystem/@WINDOWSYSTEM@ QT GL " 
+ac_gdz_package_link_dep_WindowQT="Window@WINDOWSYSTEM@Lib  SystemLib BaseLib GL" 
+ac_gdz_package_testinc_dep_WindowQT="GLUT WindowSystem/GLUT" 
+ac_gdz_package_testlink_dep_WindowQT="QT WindowGLUTLib GLUT GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_WindowQT="OSG_COMPILEWINDOWQTLIB" 
+
+ac_gdz_package_name_WindowQT4="WindowQT4" 
+ac_gdz_package_dirs_WindowQT4="WindowSystem/QT4@" 
+ac_gdz_package_inc_dep_WindowQT4="@Base@ @System@ WindowSystem/@WINDOWSYSTEM@ QT4 GL " 
+ac_gdz_package_link_dep_WindowQT4="Window@WINDOWSYSTEM@Lib  SystemLib BaseLib GL" 
+ac_gdz_package_testinc_dep_WindowQT4="GLUT WindowSystem/GLUT" 
+ac_gdz_package_testlink_dep_WindowQT4="QT4 WindowGLUTLib GLUT GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_WindowQT4="OSG_COMPILEWINDOWQT4LIB" 
+
+ac_gdz_package_name_WindowGLUT="WindowGLUT" 
+ac_gdz_package_dirs_WindowGLUT="WindowSystem/GLUT@" 
+ac_gdz_package_inc_dep_WindowGLUT="@Base@ @System@ GLUT GL" 
+ac_gdz_package_link_dep_WindowGLUT="SystemLib BaseLib GL" 
+ac_gdz_package_testinc_dep_WindowGLUT="" 
+ac_gdz_package_testlink_dep_WindowGLUT="GLUT GL TIF JPG JASPER PNG MNG TEXT" 
+ac_gdz_package_def_WindowGLUT="OSG_COMPILEWINDOWGLUTLIB" 
+
+
+
+

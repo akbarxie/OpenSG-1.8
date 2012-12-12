@@ -1,0 +1,20 @@
+# Tutorials
+
+import os
+Import('*')
+
+def custom(env):
+    env['CXXFILESUFFIX'] = '.cpp'
+    env['OSG_PROGDIR'] = os.path.join('..', 'Tutorials')
+    env.Append(LIBS=env.get('OSG_WINDOW_GLUT_LIBS', []))
+
+sources = Glob('*.cpp')
+
+for source in sources:
+    target = str(source)
+    if target[-20:] != "12ClusterServerX.cpp":
+        target = target[:-4] # remove .cpp
+        BuildProgram(tc, target, [source], tools=[],
+                     updates=[custom, OpenSGLibrary(['OSGWindowGLUT', 'OSGSystem', 'OSGBase'])],
+                     CPPPATH=['.', env['PREFIX'].Dir('include')],
+                     CPPDEFINES=['OSG_WITH_GLUT', 'OSG_BUILD_DLL'])

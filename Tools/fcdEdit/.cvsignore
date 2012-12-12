@@ -1,0 +1,12 @@
+deplist.*
+fcdEdit.*
+ii_files
+implist.*
+objlist.*
+declist.*
+.prefix.*
+*.dep
+moc_*.cpp
+uic_*.cpp uic_*.h
+FieldContainerView.*
+fcdEdit

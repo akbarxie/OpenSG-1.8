@@ -1,0 +1,296 @@
+<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<class>OSGSceneView</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>OSGSceneView</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>774</width>
+            <height>743</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>2</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QSplitter">
+            <property name="name">
+                <cstring>mainSplitter</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>7</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Scenegraph</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>treeListView</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>3</hsizetype>
+                        <vsizetype>7</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="rootIsDecorated">
+                    <bool>true</bool>
+                </property>
+            </widget>
+            <widget class="QFrame">
+                <property name="name">
+                    <cstring>frame6</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>7</hsizetype>
+                        <vsizetype>5</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="frameShape">
+                    <enum>NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Raised</enum>
+                </property>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>0</number>
+                    </property>
+                    <widget class="QSplitter">
+                        <property name="name">
+                            <cstring>_fceditor_splitter</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <widget class="QVBox">
+                            <property name="name">
+                                <cstring>_render_frame</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>7</hsizetype>
+                                    <vsizetype>7</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>320</width>
+                                    <height>256</height>
+                                </size>
+                            </property>
+                            <property name="frameShape">
+                                <enum>NoFrame</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Raised</enum>
+                            </property>
+                        </widget>
+                        <widget class="QFrame">
+                            <property name="name">
+                                <cstring>_fc_frame</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="frameShape">
+                                <enum>NoFrame</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Raised</enum>
+                            </property>
+                            <vbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>5</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>5</number>
+                                </property>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>textLabel1</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>5</hsizetype>
+                                            <vsizetype>0</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="text">
+                                        <string>&lt;b&gt;FCEditor&lt;/b&gt;</string>
+                                    </property>
+                                    <property name="alignment">
+                                        <set>WordBreak|AlignCenter</set>
+                                    </property>
+                                </widget>
+                                <widget class="QFrame">
+                                    <property name="name">
+                                        <cstring>_fceditor_frame</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>5</hsizetype>
+                                            <vsizetype>5</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="frameShape">
+                                        <enum>NoFrame</enum>
+                                    </property>
+                                    <property name="frameShadow">
+                                        <enum>Raised</enum>
+                                    </property>
+                                </widget>
+                            </vbox>
+                        </widget>
+                    </widget>
+                </vbox>
+            </widget>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>treeListView</sender>
+        <signal>rightButtonPressed(QListViewItem*,const QPoint&amp;,int)</signal>
+        <receiver>OSGSceneView</receiver>
+        <slot>popupTreeMenu(QListViewItem*)</slot>
+    </connection>
+    <connection>
+        <sender>treeListView</sender>
+        <signal>selectionChanged(QListViewItem*)</signal>
+        <receiver>OSGSceneView</receiver>
+        <slot>setActiveNodeFromListItem(QListViewItem*)</slot>
+    </connection>
+    <connection>
+        <sender>treeListView</sender>
+        <signal>clicked(QListViewItem*)</signal>
+        <receiver>OSGSceneView</receiver>
+        <slot>setActiveNodeFromListItem(QListViewItem*)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="global" impldecl="in declaration">qpopupmenu.h</include>
+    <include location="global" impldecl="in declaration">qaction.h</include>
+    <include location="global" impldecl="in declaration">OpenSG/OSGNode.h</include>
+    <include location="global" impldecl="in declaration">OpenSG/OSGQOSGWidgetFactory.h</include>
+    <include location="global" impldecl="in declaration">OpenSG/OSGQFieldContainerEditor_qt.h</include>
+    <include location="global" impldecl="in declaration">OpenSG/OSGSimpleAttachments.h</include>
+    <include location="global" impldecl="in declaration">list</include>
+    <include location="global" impldecl="in declaration">fstream</include>
+    <include location="global" impldecl="in implementation">qfiledialog.h</include>
+    <include location="global" impldecl="in implementation">qobjectlist.h</include>
+    <include location="global" impldecl="in implementation">qgl.h</include>
+    <include location="global" impldecl="in implementation">qvbox.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGSceneFileHandler.h</include>
+    <include location="global" impldecl="in implementation">qpopupmenu.h</include>
+    <include location="global" impldecl="in implementation">qdragobject.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGSFFieldContainerPtr.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGMFFieldContainerPtr.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGNodeCore.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGNode.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGLog.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGBINWriter.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGSimpleAttachments.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGRenderAction.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGShadowViewport.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGGradientBackground.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGSimpleStatisticsForeground.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGPassiveWindow.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGSimpleSceneManager.h</include>
+    <include location="local" impldecl="in implementation">OSGMainView_qt.h</include>
+</includes>
+<forwards>
+    <forward>class OpenSGWidget;</forward>
+</forwards>
+<functions>
+<function access="public" specifier="non virtual">selectItem(OSG::NodePtr node)</function>
+</functions>
+<variables>
+    <variable>QListViewItem *activeTreeItem;</variable>
+    <variable>QListViewItem *rootTreeItem;</variable>
+    <variable>QString filter;</variable>
+    <variable>osg::NodePtr activeNode;</variable>
+    <variable>QPopupMenu *treePopupMenu;</variable>
+    <variable>osg::NodePtr rootNode;</variable>
+    <variable>OSG::QFieldContainerEditor *_fceditor;</variable>
+    <variable>OpenSGWidget *_gl;</variable>
+</variables>
+<slots>
+    <slot>addListItem( osg::NodePtr node, QListViewItem * parentItem )</slot>
+    <slot>init()</slot>
+    <slot>destroyView()</slot>
+    <slot>setRootNode( osg::NodePtr root )</slot>
+    <slot>setActiveNode( osg::NodePtr node )</slot>
+    <slot>setActiveNodeFromListItem( QListViewItem * item )</slot>
+    <slot>createView( osg::NodePtr node )</slot>
+    <slot>setStatistics( bool val )</slot>
+    <slot>updateGL( void )</slot>
+    <slot>deleteNode( osg::NodePtr node )</slot>
+    <slot>popupTreeMenu( QListViewItem * parentItem )</slot>
+    <slot>menuHandler( int id )</slot>
+    <slot>addFile(osg::NodePtr parent, const QString &amp;)</slot>
+    <slot>insertFromFile( osg::NodePtr parent )</slot>
+    <slot>exportToFile( osg::NodePtr node )</slot>
+    <slot>rebuild()</slot>
+    <slot>setOcclusionCullingMode(int mode)</slot>
+    <slot>setShadowMode(int mode)</slot>
+    <slot>setHeadlight(bool)</slot>
+    <slot>showAll()</slot>
+    <slot>showObj()</slot>
+    <slot>editedFC()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

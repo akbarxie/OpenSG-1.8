@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="VRMLTransform"
+	parent="Transform"
+	library="Hugo"
+	pointerfieldtypes="both"
+	structure="abstract"
+	systemcomponent="false"
+	parentsystemcomponent="true"
+>
+This is the documentation for the VRMLTransform class.
+	<Field
+		name="center"
+		type="Vec3f"
+		cardinality="single"
+		visibility="internal"
+		header="testheader.h"
+		access="protected"
+	>
+	The Center is ...
+	</Field>
+	<Field
+		name="rotation"
+		type="QuaternionPtr"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	The Rotation is ...
+	</Field>
+	<Field
+		name="scale"
+		type="Vec3f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="1.,1.,1."
+		access="public"
+	>
+	The Scale is ...
+	</Field>
+	<Field
+		name="scaleOrientation"
+		type="Quaternion"
+		cardinality="single"
+		visibility="external"
+		defaultValue="GL_POINTS"
+		defaultHeader="<GL/gl.h>"
+		access="public"
+	>
+	The ScaleOrientation is ...
+	</Field>
+	<Field
+		name="translation"
+		type="Vec3f"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	The Translation is ...
+	</Field>
+	<Field
+		name="knoedel"
+		type="Vec3f"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	The Knoedel is a round squishy object.
+	</Field>
+</FieldContainer>

@@ -1,0 +1,707 @@
+<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<class>OSGMainView</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>OSGMainView</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>715</width>
+            <height>553</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>OpenSG Scene Viewer</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <property name="spacing">
+            <number>0</number>
+        </property>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>_main_frame</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+        </widget>
+    </vbox>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>menubar</cstring>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <action name="fileNewAction"/>
+        <action name="fileOpenAction"/>
+        <action name="fileInsertAction"/>
+        <action name="fileSaveAction"/>
+        <action name="fileSaveAsAction"/>
+        <separator/>
+        <action name="fileExitAction"/>
+    </item>
+    <item text="Render" name="PopupMenu">
+        <actiongroup name="renderOC"/>
+        <item text="OcclusionCulling" name="popupMenu_8" accel="">
+            <action name="renderOCOff"/>
+            <action name="renderOCStopAndWait"/>
+            <action name="renderOCMultiFrame"/>
+            <action name="renderOCHierarchicalMultiFrame"/>
+        </item>
+        <actiongroup name="renderShadow"/>
+        <item text="Shadow" name="popupMenu_13" accel="">
+            <action name="renderShadowOff"/>
+            <action name="renderShadowStandard"/>
+            <action name="renderShadowPerspective"/>
+            <action name="renderShadowDitherF"/>
+            <action name="renderShadowPCF"/>
+            <action name="renderShadowPCSS"/>
+            <action name="renderShadowVariance"/>
+        </item>
+    </item>
+    <item text="&amp;Help" name="helpMenu">
+        <action name="helpAboutAction"/>
+    </item>
+</menubar>
+<toolbars>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>toolBar</cstring>
+        </property>
+        <property name="label">
+            <string>Tools</string>
+        </property>
+        <action name="fileNewAction"/>
+        <action name="fileOpenAction"/>
+        <action name="fileSaveAction"/>
+    </toolbar>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>Toolbar</cstring>
+        </property>
+        <property name="label">
+            <string>Toolbar</string>
+        </property>
+        <action name="statistic"/>
+        <action name="headlight"/>
+        <action name="showAllAction"/>
+        <action name="showObjAction"/>
+    </toolbar>
+</toolbars>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>fileNewAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image1</iconset>
+        </property>
+        <property name="text">
+            <string>New</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;New</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+N</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileOpenAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image2</iconset>
+        </property>
+        <property name="text">
+            <string>Open</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Open...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+O</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image3</iconset>
+        </property>
+        <property name="text">
+            <string>Save</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Save</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+S</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Save As</string>
+        </property>
+        <property name="menuText">
+            <string>Save &amp;As...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>filePrintAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image4</iconset>
+        </property>
+        <property name="text">
+            <string>Print</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Print...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+P</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileExitAction</cstring>
+        </property>
+        <property name="text">
+            <string>Exit</string>
+        </property>
+        <property name="menuText">
+            <string>E&amp;xit</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpAboutAction</cstring>
+        </property>
+        <property name="text">
+            <string>About</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;About...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>createViewAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image5</iconset>
+        </property>
+        <property name="text">
+            <string>Create View</string>
+        </property>
+        <property name="menuText">
+            <string>Create View</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileInsertAction</cstring>
+        </property>
+        <property name="text">
+            <string>Insert</string>
+        </property>
+        <property name="menuText">
+            <string>Insert</string>
+        </property>
+    </action>
+    <actiongroup>
+        <property name="name">
+            <cstring>renderOC</cstring>
+        </property>
+        <property name="text">
+            <string>OcclusionCulling</string>
+        </property>
+        <property name="menuText">
+            <string>OcclusionCulling</string>
+        </property>
+        <property name="usesDropDown">
+            <bool>true</bool>
+        </property>
+        <action>
+            <property name="name">
+                <cstring>renderOCOff</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="on">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Off</string>
+            </property>
+            <property name="menuText">
+                <string>Off</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderOCStopAndWait</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Stop And Wait</string>
+            </property>
+            <property name="menuText">
+                <string>Stop And Wait</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderOCMultiFrame</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Multi Frame</string>
+            </property>
+            <property name="menuText">
+                <string>Multi Frame</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderOCHierarchicalMultiFrame</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Hierarchical Multi Frame</string>
+            </property>
+            <property name="menuText">
+                <string>Hierarchical Multi Frame</string>
+            </property>
+        </action>
+    </actiongroup>
+    <actiongroup>
+        <property name="name">
+            <cstring>renderShadow</cstring>
+        </property>
+        <property name="text">
+            <string>Shadow</string>
+        </property>
+        <property name="menuText">
+            <string>Shadow</string>
+        </property>
+        <property name="usesDropDown">
+            <bool>true</bool>
+        </property>
+        <action>
+            <property name="name">
+                <cstring>renderShadowOff</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="on">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Off</string>
+            </property>
+            <property name="menuText">
+                <string>Off</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderShadowStandard</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Standard</string>
+            </property>
+            <property name="menuText">
+                <string>Standard</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderShadowPerspective</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Perspective</string>
+            </property>
+            <property name="menuText">
+                <string>Perspective</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderShadowDitherF</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Dither</string>
+            </property>
+            <property name="menuText">
+                <string>Dither</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderShadowPCF</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>PCF</string>
+            </property>
+            <property name="menuText">
+                <string>PCF</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderShadowPCSS</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>PCSS</string>
+            </property>
+            <property name="menuText">
+                <string>PCSS</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>renderShadowVariance</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Variance</string>
+            </property>
+            <property name="menuText">
+                <string>Variance</string>
+            </property>
+        </action>
+    </actiongroup>
+    <action>
+        <property name="name">
+            <cstring>statistic</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>image6</iconset>
+        </property>
+        <property name="text">
+            <string>Statistic (F12)</string>
+        </property>
+        <property name="menuText">
+            <string>Statistic</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>headlight</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="on">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>image7</iconset>
+        </property>
+        <property name="text">
+            <string>Headlight (F10)</string>
+        </property>
+        <property name="menuText">
+            <string>Headlight</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>showAllAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image8</iconset>
+        </property>
+        <property name="text">
+            <string>Show All (F5)</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>showObjAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image9</iconset>
+        </property>
+        <property name="text">
+            <string>Show Object</string>
+        </property>
+    </action>
+</actions>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="2144">789c95d4c94e5d391006e03d4f7145ed50ab7266db6af502c89c90404692a8171e192fe365b84479f7f6f9cb39dd0b883a1c24f8e49287aab21fadcd76b7b7666b8f562e177671e0677edf5eccd6c2d57cbefcf6f75fdf5756eb61967f4d3f6b56ff5859a5b3999f516794b50ebe1ddd6bdd3b19bf1c3d34da3b051fc3bd8e4ec357f0a093980dac4de50cc60f60636a67e139ec4c2be6add1aa529deae1166e8d7111f10eee8c7509e32fe0415985fdf2e1640f2bb171be8217b052ae8c0fb036ded7f03eec75a5c59f47eb5af77ac0fa7b70633b2ffbbb81738234cec74f61a5ad96fdac4f96f52c6cb4d7015ec256078df3d09dd85a2ff9da84bd755ef2837c99cab4a6c3f8a9d8462ff3233fa6369dc1fe68036e6c2ae3e25c6023f5790ce78218a94712bbc64b7eb76163bc91fdeec0d604837a7084a3ad2cfa836f8bebe2f770b28d6de16eb46d9d0f92bf0ff07860c9d75db1b3b2df2f704e87c5fa740e7bdf06c97718ed2ad73899ff5571eb901ffe0ad7936b78705afa91b5384f2ff3a33e2efa14a5fe4fe0e4ebd21f3459ee03eae7ebd04459ff0ddc7be5713fb817873ecafa27b0f6a6d4b3110715a55e8bc9d26f47b00dba18f9f62ea75fee1ffacbfb60a3d413fde0838fa57e2f8b53f1c5e8508526487d5ec36de84a3d9ec35901ebf13b38abf81a1e820ab2be58c7264a7f78d80617a49e6f27a39e44e2d845e91fbc07e3a88c33de93ac50ea81fb15625449eeef3338c52a8ad10f5975a917eecba828f5c179631b5d92f3e27d8b7dfee43c9f601d4d947ef808dbfcc9feab6227a61371aa92e40befe1385ae2f726cb79f11ee5e82ec9fb88f725d5a94f72bf91afd4a441ccbb703f7e30ee6352e38778f47bd2295f688ce3bd4df98225b9bf0cdbe492d403fd93c2f88dde417f25fc887ffdfd8c6162cb8efdc3311c3872e23ddee78307630ef908b31df39c4fc6383ee5333ee70bbe9c62167c85986bbee1db3ceb92ef789d3778931f4f314ff8293fe3e7fc825ff22b7ecd5bfc86dff2761ed9f9cf9edff17bfec01ff9137fcef3ecf217fecaa7e39affc6fcfcb8e2faa1b3ff9ffc608e865beef2df9e0756acef8d31c44464c991a740f1be184ab447fb744087bfda0f1dd131cde924ff774a67f7ce734e1774490bbaa26bbaa1db7b63967447ebf92fd1066dd2f2b7cefee3cf957f00992219ea</data>
+    </image>
+    <image name="image1">
+        <data format="PNG" length="184">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000007f49444154789ced95510a0021084475d9db041ec0e8fa5ecbfdda852d4b11fa6b2028a3570c53a188c00edd7d819935b2504470357f5945559d36000022720f60823d11910b1fac88a894f2f599592d5b52e05aeb6f6cc153e0d6da50ebe12930e2321039f09b0c6fb3542a223ae0033ee085cc2b1d790b3ce1ae3f6f9b150f6d5433af8c7fa5080000000049454e44ae426082</data>
+    </image>
+    <image name="image2">
+        <data format="PNG" length="231">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000ae49444154789cb594510ec3200c436db45371b6691fd3cee66bb18f5135a219235af04f442b5e2c03a124ec50d942dd09be4537d45a9b5d4be2f85f1243e06393d748126d53661d9e854a624ac6633c40cff8576e51280010406b0d00dab104b9c69d19e887774201f64ebc7c8f342fc678b0ce553cc76b752e37e368d69edc8c2df4f58c01ef8f4f7533fe176a1e482ef4e2380b6ac0b9d0d36a57161430833e130aacdef62f9acd8ab4793cea0d051970cd5b32cc0a0000000049454e44ae426082</data>
+    </image>
+    <image name="image3">
+        <data format="PNG" length="230">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000ad49444154789cd595310e842010453f8686c482f3d0ccc58c85f16234731e0b922d770b3386150d62d084d7100cbe7cc6411433e309340038e7be35a5ccacb44ce6691d8711f0de178988687b878800005da590093abfe418132c3efdb2cd25a9904d6c82850936791e4b81b59452ce4be2bb644bb14f7695c712b7274e6a3c4f69ebe488bbe1547cb6b09477db6d18cb45fb5dde3ed2f18feae89bb4d76eed8995dc79b5ae2766567fe2dafc0045362bc8b49ae4470000000049454e44ae426082</data>
+    </image>
+    <image name="image4">
+        <data format="PNG" length="709">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000028c49444154789c8d95af7bdb301086dfec0938319bc530b061350c2cf458cb5a18b83f6181a363a3851debd8020b1dd6b01a0adacc62772c03b21de7d7b38a28962eef7dbaef2c4fcab2e4d268db762f22a4697ab46e6600a82a0021049224c1393719c74d2f52011121cff30174ba371280f7fe2ce62a18a0aaaa33d8692255c539f779f02580999d25e8e753f8972bdcbd990dc1ce399c7347f5eeeb2f2267f5bdaa5855499284b66d1191c1a8f1b874fccf28c6ccce3a620ced935d32f7aae25ecd25a5e375553dea90ff82ebba663e9f9365d955786fe476bb2584b01749c8b274a8f5115855f7de7baa5d851482880c80d3b957dad62d6559d284869b9b9b7d5114a4693a99f46f9eaaeeabca13ea063580cb4a019ca408020e7ced797fdfd13435aac6623167b55a45c5bdd2e2ee0e97a6a81a9872668b1920946c79e32f4b5bb2fcc8a9aa1da8e1808ff70f7ee933d3086d78f8fa40324baeaaec4745c54f7ee0f1ecd8f1222f14fe9e97f699ba0e1846e33dd3d0049e9eeeafba7b3a5252ee5852221414dcdede9248466b35cf2fbf092190ce52a606785fc77e340311628e9848041c2e56dc14c4f1cdbe738f27b38c1d1598916659dcefdc99b6758d1789f53463f0cd4174b13b89335001e29a00de1a8c7887f8aa1a3c7174edd62f580fc486a650a229b19d87c8a173a4f7743414658a80b5a33f6827761c688028d8e98ec3aca53b677f36f27cc9176ca47210abf1d1baf908eafab00eda01bb72ce663356aba7a8d87bdf5b0562100408d139b388915e951d601c6a8e1922b05eafc9b26c329dcfe7bc6ddef8b3d9a06ac4fb47386a3e193dcb01399cb3eba6f57a4d9ee71380e195aeeb7afffabaa1e9be5f8a76a61c9c397c3540b58dbf83912f731e1f1f592c16c325f40f010f7cb01c5264d10000000049454e44ae426082</data>
+    </image>
+    <image name="image5">
+        <data format="PNG" length="1220">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000048b49444154789c9d954d6f645711869faa73ee47bbddedf6787a6cc79a84d1c8464a1651404108012b568090104bfe00e25ff003f8192cc296255b34486c48986812291906ec71661c37b6fbe376df7bcf47b1b08566011b4a3ad2a953a547af4aa5f7c8e4c3df581f1221659c0a6646514251382c2b7d1452324401140c40b87b00151001816ce054a92a87ef0244db23e409c18ca2ae383e19f2eea39ab677fcedcb35cfcf3a1441e496797be40eec6ee10e32000b82bdc6975b25e21f63f188e120f3dec9845ffe78ca8f3e1c329bf7fcf6a36bcefa0d6d6b10036806e53f2a51074ec1034eb034c39617f8e97e85d515c3dd29bffac988c747050fa79e7b23a5e93c27c703267b357ffca4e5e5d70d660954ef4621e01c780127802241f0c1e38b0abef1c8f1d31f0ef9d977479819e7d73df12ab3ea8c6f9dd4b49df1d6bee3f77fcefce332d22740fd2d4c3db8bb7b548ac190a9aff052957cff83431edc2ff8f4bce572956982e19d90334494abc6d808fcfc073b7c721678fada5876254d52127aab5a8549693c2e94ad59c6cf7be10f4f6fd85f1ee244a84b10e70859b00ca68e55801885a6372ed62571ecd1505226c1eeb8287c6f7fc33b69cdd9d512bf029ecd334f5f0ac5ddba65cb6473647564e74928311b90c03b9c17061e0a814109e30a76cac877a60bf2c592cf1637f8e2fa194824d45b70ff11a91a1155d10c03816d35766b181789c1d529a16bb92ef7988df7e90a78b80defd791b7d30caecf387ff631b16df0fef5c76c2d4ea9bb0bf2e284bc7b844c1e302a6bf63471a089c3ca51c739af4fff82c41e3d78877f6d1db31c1df170b4cd71be4156177cf1d73f71faf72f69bb25de6e2eb0ab57d497ffa41cdd23ef4ca91e1cb1b7738f3181fb758148e47ab36675bda27489fbe92bf6569fb1193fa4da39a0f705e7a7cf79f5f29ccd72ceba5be2b316f43170d3344cca0a771da85383ae46cc4d98858e14238b5543db053ef8e62193ad92d05d326e9455b3e2f3d98257672f58cc6f082ac42cf88cd26523850ebfbe4131ac6b58cdb758ac366cda0ddb03c76858e2bac8e98b96c5ec2b367d0237a04d35cd26d1b56bba1889754deb049fb261c94821b1deb46483a60f146e8e982192d9df9f303d54362bc7e5c50d5f9caf69432665a5f4057559e08a82c241b235297abcd99d87a86259082933181afb53615043df01e59a986bdad4333a30aa501092e155a80ac555d0e68e948da6cd8495e18ff7848342d9f78aaa90711443a1d836b2cfb824b42132dbacd87489f1c8e18a4c5a1abb3b0ec51017293042343467ba12fcf15b8ef7269ee3714fca202664155a071db0e58414e1ba31b2405925c409668a1323c54c3621034d9fb92c8de780dfde16b677613086100da29193a02ad42a54050c54787b47299de09de114d420e64c8cb73e1cb3b0ea8c174d661e12be4dc64d0baf3c24838861093481f3026678cd54a25440011418952aa64a74109211305a11920826e0138649a6e933d10067942a48164206c1c8d98892e84c70198a90f162547a6b546d6f44139c1995382c97f82ccad78d63ad9e6cc22f7efd3bde08e1ee977b23ff6f616fd6bf0d264f9e3cf95f4dff3718b07f0362a06669f18562460000000049454e44ae426082</data>
+    </image>
+    <image name="image6">
+        <data format="PNG" length="203">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000009249444154789cb553c11180300813c67206077044077006d6d2573daeb40d72906749d3140289c856012e51cd143ee57896c23d019db7dab5dfa4398c08487406d88af658bab047b4fd52731911bce8ef50568ea78ed1d491687fc6fab51161551b39358ea398cda36ca5bfe1add230aaa1f48452a1fbfeab15911586c219a246d8bb759e0d352bed7584b8f571cb4699e31718b477cfd8003f310000000049454e44ae426082</data>
+    </image>
+    <image name="image7">
+        <data format="PNG" length="699">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000028249444154789cb5944b4f535110c77f2db70fda724b7b5bfba092960225c806c3421259695cb8401313fc0a1a177e03172eddf91558b8686234180d84959bc6088918a569a9a406620bf4de52caab4fae8ba635b10faa8149cee24c667ee79cff99194d2412e1324c7b295440382f20ab84d5785425912ca2c819cce63efc3e13fe6191d1d0aca65d9ea6931489d84b35b13984f3aa96804fac1d94d947d93b25912c321230303df3b025bc2d7823bea03a1c055cee8986ef307f00c0d169a576f07a8aeb13710cb6674df0961a6795b09a3f7033327a0b5174218a2e0c7a337da215004b6f4dc1c9a9413e4686c82a61f56f464b8d65d9887fd08ddf3fdcf0e57349b2394be3e6965e01ce6c8c0d4e108fc6999ee902acec9d72fbce4d74154bc327f6d7563c7684ce7e4cb9624610246c9291d8ebef4d8c9652389c3b381d8794853400a51e23ba8a07008fdbda883399b4f806aa04824a776039e32623f7a1ab7828f518911599cfdfbea0d78ff1732bc5d6af0206bd19805c4e42ceb8bb034b577a595b895016d2e8ab05bcfd160cfa12efdebf20bdabe07149144bc79c9c9cb11e8db642b491c2516073e72b0065214d5948337e6db026854b026a1fb82f2bacadae101a6f2ee59660bb34a7b11aaa2c2d2f90cf251b4baba6d109c78db8eded25024105bb34d7446edbd2a3a1594d71ffb9faea4d9e804f64c0750240b592657727c9eaa71281208c8c3dfdb7ceab5b5609abcb8b6b78bd6652a93fb79d9cbad171569c3bddeacfbcf720c8fdbb46bc0351169792d89db68e79ff3d36eb6d7de1e07cde7e31e0f4e60600891f25004caab5537877e062758cb71f0a8d7d2018c2e276b7fd38e8a22aea363f3faf1a7a62a476251e3d794cafc17431e07fb5df115aeca508f8050b0000000049454e44ae426082</data>
+    </image>
+    <image name="image8">
+        <data format="PNG" length="257">89504e470d0a1a0a0000000d4948445200000015000000150806000000a917a596000000c849444154789ced93310ec2300c453f9c8863f8281d394207860c1d3a729c0e0c7f60e8713c44fa0c9028548596a84242e24b1e1225cf3fb603fc3555e882cc4c007298994217540d04a0d00591540f88a4cafd2a20c90c4ce1d145f273707a2249797479f40c4c519466b5b2c339682a05ee757ea9dd14daafc87c9cbf5befd4a32f3add970b33c37019d0449f3ddc44c7781d61666b4d3e773f392bbb9f5c568f5539a7e53861e1e96fc10b3f4a00d49edaba042f241ccedb821fa01f066f022dc15b37ed3bba019364076446f576bc0000000049454e44ae426082</data>
+    </image>
+    <image name="image9">
+        <data format="PNG" length="264">89504e470d0a1a0a0000000d4948445200000015000000150806000000a917a596000000cf49444154789ced93bd09c33010858f9081aec8101a2003a8f4182e52a8f0002e338aca2b5c789c2b042f85ad1f4c6cc7c2040279f0109ce093744f47f4d752ae7330c68088928d31709d43359088e03a0711492eeb5540ef3d34289a3b256b5078ef8f83e3132350079b1cc1456b3e1644240383ce9ec096192212fbbcaaebf619cdb48cb9c237debdd9657377ccc07178eec2de6ad953e9b32d33342844e4584f97e95be6e4eaf44b70fca731ac22a0fa01d899281011da475b77c08a40dc9f0b9e413f0c3e055a82cf0eed3b7a010b97000b1c6afdc80000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>fileNewAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>fileNew()</slot>
+    </connection>
+    <connection>
+        <sender>fileOpenAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>fileOpen()</slot>
+    </connection>
+    <connection>
+        <sender>fileSaveAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>fileSave()</slot>
+    </connection>
+    <connection>
+        <sender>fileSaveAsAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>fileSaveAs()</slot>
+    </connection>
+    <connection>
+        <sender>filePrintAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>filePrint()</slot>
+    </connection>
+    <connection>
+        <sender>fileExitAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>fileExit()</slot>
+    </connection>
+    <connection>
+        <sender>helpAboutAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>helpAbout()</slot>
+    </connection>
+    <connection>
+        <sender>fileInsertAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>fileInsert()</slot>
+    </connection>
+    <connection>
+        <sender>statistic</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>setStatistics(bool)</slot>
+    </connection>
+    <connection>
+        <sender>renderShadowOff</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>shadowOff()</slot>
+    </connection>
+    <connection>
+        <sender>renderShadowStandard</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>shadowStandard()</slot>
+    </connection>
+    <connection>
+        <sender>renderShadowPerspective</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>shadowPerspective()</slot>
+    </connection>
+    <connection>
+        <sender>renderShadowDitherF</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>shadowDither()</slot>
+    </connection>
+    <connection>
+        <sender>renderShadowPCF</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>shadowPCF()</slot>
+    </connection>
+    <connection>
+        <sender>renderShadowPCSS</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>shadowPCSS()</slot>
+    </connection>
+    <connection>
+        <sender>renderShadowVariance</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>shadowVariance()</slot>
+    </connection>
+    <connection>
+        <sender>renderOCOff</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>ocOff()</slot>
+    </connection>
+    <connection>
+        <sender>renderOCStopAndWait</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>ocStopAndWait()</slot>
+    </connection>
+    <connection>
+        <sender>renderOCMultiFrame</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>ocMultiFrame()</slot>
+    </connection>
+    <connection>
+        <sender>renderOCHierarchicalMultiFrame</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>ocHierarchicalMultiFrame()</slot>
+    </connection>
+    <connection>
+        <sender>headlight</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>setHeadlight(bool)</slot>
+    </connection>
+    <connection>
+        <sender>showAllAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>showAll()</slot>
+    </connection>
+    <connection>
+        <sender>showObjAction</sender>
+        <signal>activated()</signal>
+        <receiver>OSGMainView</receiver>
+        <slot>showObj()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="global" impldecl="in implementation">qapplication.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGSceneFileHandler.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGGroup.h</include>
+    <include location="global" impldecl="in implementation">qtimer.h</include>
+    <include location="global" impldecl="in implementation">qstring.h</include>
+    <include location="global" impldecl="in implementation">qmessagebox.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGLog.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGNode.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGNodeCore.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGRenderAction.h</include>
+    <include location="global" impldecl="in implementation">OpenSG/OSGShadowViewport.h</include>
+    <include location="local" impldecl="in declaration">OSGSceneView_qt.h</include>
+</includes>
+<variables>
+    <variable>OSGSceneView *sceneView;</variable>
+    <variable>osg::NodePtr root;</variable>
+</variables>
+<slots>
+    <slot>init()</slot>
+    <slot>destroyMainView()</slot>
+    <slot>fileExit()</slot>
+    <slot>fileNew()</slot>
+    <slot>fileOpen()</slot>
+    <slot>fileInsert()</slot>
+    <slot>filePrint()</slot>
+    <slot>fileSave()</slot>
+    <slot>fileSaveAs()</slot>
+    <slot>helpAbout()</slot>
+    <slot>setStatistics( bool val )</slot>
+    <slot>shadowOff()</slot>
+    <slot>shadowStandard()</slot>
+    <slot>shadowPerspective()</slot>
+    <slot>shadowDither()</slot>
+    <slot>shadowPCF()</slot>
+    <slot>shadowPCSS()</slot>
+    <slot>shadowVariance()</slot>
+    <slot>ocStopAndWait()</slot>
+    <slot>ocMultiFrame()</slot>
+    <slot>ocHierarchicalMultiFrame()</slot>
+    <slot>ocOff()</slot>
+    <slot>setHeadlight(bool)</slot>
+    <slot>showAll()</slot>
+    <slot>showObj()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

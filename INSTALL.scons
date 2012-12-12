@@ -1,0 +1,41 @@
+
+   How to build OpenSG with the scons build system
+   ===============================================
+
+Supported platforms are linux and windows in 32 bit and 64 bit.
+
+Linux
+-----
+
+Supported compilers are gcc 3.x and 4.x.
+
+Go into the OpenSG directory and type "./scons"
+
+Type "./scons -h" to see all possible options.
+
+Windows
+-------
+
+Supported compilers are Visual Studio 2003 and 2005.
+The image libs (jpeg, png, tiff) are automatically unzipped into OpenSG/../supportlibs and linked into
+the OSGSystem.dll.
+
+Install python (www.python.org)
+Add the python install directory (e.g. C:\Python24) to the PATH environment variable.
+
+Visual Studio 2003
+
+    Open a cmd shell and go into the OpenSG directory and type ".\scons compiler=msvc71"
+    The headers, libs and examples are installed in OpenSG/Build/win32-msvc71/installed
+
+Visual Studio 2005
+
+    Open a cmd shell and go into the OpenSG directory and type ".\scons compiler=msvc80"
+    The headers, libs and examples are installed in OpenSG/Build/win32-msvc80/installed
+
+In the visual studio 2005 express edition the PlaformSDK is missing so
+it is necessary to install the platform sdk from
+http://www.microsoft.com/downloads/details.aspx?FamilyId=0BAF2B35-C656-4969-ACE8-E4C0C0716ADB&displaylang=en
+
+
+Type ".\scons -h" to see all possible options.

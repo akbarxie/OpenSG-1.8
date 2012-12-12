@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="AVCodecGrabForeground"
+	parent="GrabForeground"
+	library="Contrib"
+	pointerfieldtypes="both"
+	structure="concrete"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+	decoratable="false"
+	useLocalIncludes="false"
+>
+	<Field
+		name="active"
+		type="bool"
+		cardinality="single"
+		visibility="external"
+		defaultValue="false"
+		access="public"
+	>
+	Activate the grabber.
+	</Field>
+	<Field
+		name="name"
+		type="std::string"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	The filename template. %d is replaced by the frame number.
+	</Field>
+	<Field
+		name="kbit"
+		type="UInt32"
+		cardinality="single"
+		visibility="external"
+		defaultValue="1400"
+		access="public"
+	>
+	The data rate to use in kbit.
+	</Field>
+	<Field
+		name="fps"
+		type="UInt32"
+		cardinality="single"
+		visibility="external"
+		defaultValue="25"
+		access="public"
+	>
+	The frame rate to use in fps.
+	</Field>
+	<Field
+		name="codecid"
+		type="UInt32"
+		cardinality="single"
+		visibility="external"
+		defaultValue="0"
+		access="public"
+	>
+	The codecid to use. See avcodec.h fore options.
+	</Field>
+	<Field
+		name="flip"
+		type="bool"
+		cardinality="single"
+		visibility="external"
+		defaultValue="true"
+		access="public"
+	>
+	Flag to flip frames before encode them.
+	</Field>
+	<Field
+		name="autoWrite"
+		type="bool"
+		cardinality="single"
+		visibility="external"
+		defaultValue="true"
+		access="public"
+	>
+	Flag to start/stop automatic writing after each grab.
+	</Field>
+</FieldContainer>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="ScreenAlignedText"
+	parent="AbstractText"
+	library="System"
+	pointerfieldtypes="both"
+	structure="concrete"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+	decoratable="false"
+>
+	<Field
+		name="Color"
+		type="Color4f"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="RenderImage"
+		type="ImagePtr"
+		cardinality="single"
+		visibility="internal"
+		access="protected"
+	>
+	Bitmap image used only for rendering
+	</Field>
+</FieldContainer>

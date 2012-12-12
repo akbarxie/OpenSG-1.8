@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="SimpleStatisticsForeground"
+	parent="StatisticsForeground"
+	library="System"
+	pointerfieldtypes="both"
+	structure="concrete"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+	decoratable="false"
+	useLocalIncludes="false"
+>
+Simple Statistics display. Just print all the selected elements in the upper left corner of the screen.
+	<Field
+		name="formats"
+		type="std::string"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	The format strings for the given StatElemDesc IDs. If not set, name and value are used.
+	</Field>
+	<Field
+		name="size"
+		type="Real32"
+		cardinality="single"
+		visibility="external"
+		defaultValue="16"
+		access="public"
+	>
+	Height of a single line, in  pixel.
+	</Field>
+	<Field
+		name="color"
+		type="Color4f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="1,1,1,1"
+		access="public"
+	>
+	Color of the text.
+	</Field>
+	<Field
+		name="shadowColor"
+		type="Color4f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="0,0,0,1"
+		access="public"
+	>
+	Color of the shadow.
+	</Field>
+	<Field
+		name="bgColor"
+		type="Color4f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="0,0,0,0"
+		access="public"
+	>
+	Color of the background.
+	</Field>
+	<Field
+		name="family"
+		type="std::string"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	The font family to be used, e.g. "SANS", default if unset.
+	</Field>
+	<Field
+		name="shadowOffset"
+		type="Vec2f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="1,-1"
+		access="public"
+	>
+	Offset of the shadow, in pixels.
+	</Field>
+	<Field
+		name="horizontalAlign"
+		type="UInt8"
+		cardinality="single"
+		visibility="external"
+		defaultValue="0"
+		access="public"
+	>
+	Simple form of layout management, 0 defaults to left.
+	</Field>
+	<Field
+		name="verticalAlign"
+		type="UInt8"
+		cardinality="single"
+		visibility="external"
+		defaultValue="0"
+		access="public"
+	>
+	Simple form of layout management, 0 defaults to top.
+	</Field>
+	<Field
+		name="borderColor"
+		type="Color4f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="-1,-1,-1,0"
+		access="public"
+	>
+	Color of the border.
+	</Field>
+	<Field
+		name="borderOffset"
+		type="Vec2f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="4,4"
+		access="public"
+	>
+	Offset of the border in pixels.
+	</Field>
+	<Field
+		name="textMargin"
+		type="Vec2f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="0,0"
+		access="public"
+	>
+	Text margin in pixels.
+	</Field>
+</FieldContainer>

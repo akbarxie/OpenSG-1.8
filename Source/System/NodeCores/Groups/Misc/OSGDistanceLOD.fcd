@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="DistanceLOD"
+	parent="Group"
+	library="System"
+	pointerfieldtypes="none"
+	structure="concrete"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+>
+	<Field
+		name="center"
+		type="Pnt3f"
+		defaultValue="0.f, 0.f, 0.f"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	The center for distance calculation.
+	</Field>
+	<Field
+		name="range"
+		type="Real32"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	The range intervals.
+	</Field>
+	<Field
+		name="index"
+		type="Int32"
+		defaultValue="-1"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	The current index into the range interval (internally updated and only valid for single viewport scenarios).
+	</Field>
+</FieldContainer>

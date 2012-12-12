@@ -1,0 +1,150 @@
+
+LINKER_INIT_FLAG     := -Wl,-Bsymbolic -Wl,-init 
+
+LIBPATH_OPTION       := -L
+LIBLNK_OPTION        := -l
+
+OBJ_OPTION           := -o
+
+NO_STDINC_DEP_OPTION := -Y
+
+COMPONLY_OPTION      := -c
+
+ASONLY_OPTION        := -S
+
+DEPEND_OPTION        := -M
+
+LD_OUTOPT            := -o 
+
+DIR_SEP              := /
+
+II_FILESDIR          := 
+
+### Darwin Version ##############################################
+
+DARWINVERSION := $(shell uname -r | cut -d'.' -f 1)
+
+### Compiler Version ##############################################
+
+COMPILER := $(shell $(CC) -v 2>&1 | fgrep version  | cut -d' ' -f 3)
+
+ifneq ($(COMPILER),)
+COMPILERVERSION := $(shell echo $(COMPILER) | cut -d '.' -f 1)
+else
+COMPILERVERSION :=
+endif
+
+COMPILERVERSION := $(if $(COMPILERVERSION),$(COMPILERVERSION),$(error could not determine compiler version))
+
+$(warning Got Compiler Version : $(COMPILERVERSION))
+
+### Defines #######################################################
+
+# For QT
+DEP_PLATTFORMDEF = 
+
+SOURCE_DEFINES   = -D_GNU_SOURCE -DQT_CLEAN_NAMESPACE \
+                   $(CONFIGURED_PACKAGE_DEFS)
+#-DMNG_LIB -DPNG_LIB
+#-D__STL_USE_NEW_IOSTREAMS
+
+SYSTEM_DEFINES   = -D_OSG_HAVE_CONFIGURED_H_
+
+### Warnings #######################################################
+
+WARNINGS	   	:= -Wall -W   -Wpointer-arith 			\
+				   -Wcast-qual -Wcast-align   -Wconversion   	\
+				   -Wsign-compare 						  		\
+				   -Winline 
+
+#-Wshadow
+#				   -Wmissing-declarations -Wmissing-noreturn    \
+
+WARNINGS_C_OFF		= # -woff 835
+
+# 1110 : statement is unreachable
+# 1174 : Variable declared but never referenced
+# 1375 : Base class Destructor not virtual
+# 1376 : class has no accessible constructors
+# 1424 : The template parameter is not used in declaring the argument types
+# 1682 : overloaded virtual function is only partially overridden
+# rubens
+# warning(3322): omission of explicit type is nonstandard ("int" assumed)
+
+WARNINGS_CPP_OFF 	= -Wno-unused -Wno-long-long -Wno-reorder
+
+### Language #######################################################
+
+LANG_FLAGS          = --param max-inline-insns-single=15000 --param inline-unit-growth=1000 --param large-function-growth=20000
+#-frepo  -fno-implicit-templates
+COMPILER    		= -ansi  -use_readonly_const -ftemplate-depth-100 -fPIC
+
+ifeq ($(LNK),)
+COMPILER           := $(COMPILER) -fno-common -fPIC 
+endif
+
+ifneq ($(COMPILERVERSION), 4)
+COMPILER           := $(COMPILER) -fexport-coalesced
+endif
+
+### Optimize / Debug ###############################################
+
+ifeq ($(PRINT_INLINE), 1)
+COMP_INLINE := 
+endif
+
+ifeq ($(DEBUG_VERSION), 0)
+	COMP_OPTIMIZE    = -O2
+	COMP_DEBUG       = 
+else
+	COMP_OPTIMIZE    =
+	COMP_DEBUG       = -g -DOSG_DEBUG
+endif
+
+### Compiler Flags ################################################
+
+
+DEFINES     = $(SOURCE_DEFINES) $(SYSTEM_DEFINES) $(DEP_PLATTFORMDEF)
+
+# C Compiler Flags
+
+NO_STD_INC     = -nostdinc
+NO_STD_INC_DEP = -Y
+
+CFLAGS    = $(WARNINGS) $(WARNINGS_C_OFF) -D__STDC__ $(DEFINES) \
+            $(COMPILER) $(COMP_OPTIMIZE) $(COMP_DEBUG) \
+            $(MACOSX_VERSION_MIN) $(MACOSX_SYSROOT_COMPILER) $(MACOSX_ARCHS)
+
+# CPP Compiler Flags
+
+CCFLAGS   = $(WARNINGS) $(WARNINGS_CPP_OFF) $(DEFINES) \
+            $(COMPILER) $(LANG_FLAGS) $(COMP_OPTIMIZE) $(COMP_DEBUG) \
+            $(MACOSX_VERSION_MIN) $(MACOSX_SYSROOT_COMPILER) $(MACOSX_ARCHS)
+
+# Assembler Flags
+
+ASFLAGS   = $(WARNINGS) $(WARNINGS_C_OFF) $(DEFINES) 	\
+	 	    $(COMPILER) $(COMP_OPTIMIZE) $(COMP_DEBUG) 
+
+
+# Linker Flags
+
+ifeq ($(PRINT_INLINE), 1)
+LINK_INLINE := 
+endif
+
+ifeq ($(DEBUG_VERSION), 0)
+	LINK_OPTIMIZE    = -O2
+	AR_FLAGS         = 
+	LINK_DEBUG       = 
+else
+	LINK_OPTIMIZE    =
+	LINK_DEBUG       = -g 
+endif
+
+
+LD_FLAGS += $(LINK_OPTIMIZE) $(LINK_DEBUG) \
+            -headerpad_max_install_names \
+            $(MACOSX_VERSION_MIN) $(MACOSX_SYSROOT_COMPILER) $(MACOSX_SYSROOT_LINKER) $(MACOSX_ARCHS)
+
+ADD_OS_LIB := -framework ApplicationServices

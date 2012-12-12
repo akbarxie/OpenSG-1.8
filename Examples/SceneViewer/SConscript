@@ -1,0 +1,36 @@
+# SceneViewer
+
+Import('*')
+
+sources = Glob('*.cpp')
+
+headers = Split("""
+    OSGMainView_qt.h
+    OSGSceneView_qt.h
+""")
+
+AppendFilesUnique(sources, GetMocSources(headers))
+
+# we don't need to handle the ui files because the generated files from uic
+# are already checked into the cvs.
+
+def custom(env):
+
+    env.Append(CPPPATH=env.get('QTCPPPATH'))
+    env.Append(LIBPATH=env.get('QTLIBPATH'))
+    env.Append(LIBS=env.get('OSG_SYSTEM_LIBS'))
+    env.Append(LIBS=env.get('OSG_WINDOW_QT_LIBS'))
+
+    CreateMocSources(env, headers)
+
+if tc.is_win32():
+    dep_LIBS = []
+else:
+    dep_LIBS = ['OSGWindowX']
+
+
+if _po.getOption('qt'):
+    BuildProgram(tc, 'osgSceneViewer', sources, tools=[],
+                 updates=[custom, OpenSGLibrary(['OSGWindowQT', 'OSGSystem', 'OSGBase'] + dep_LIBS)],
+                 CPPPATH=['.', env['PREFIX'].Dir('include')],
+                 CPPDEFINES=['OSG_WITH_QT', 'OSG_BUILD_DLL'])

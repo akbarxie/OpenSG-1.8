@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="CGFXMaterial"
+	parent="ChunkMaterial"
+	library="Contrib"
+	pointerfieldtypes="none"
+	structure="concrete"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+	decoratable="false"
+	useLocalIncludes="false"
+>
+	<Field
+		name="effectFile"
+		type="std::string"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	cgfx file
+	</Field>
+	<Field
+		name="effectString"
+		type="std::string"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	cgfx source string
+	</Field>
+	<Field
+		name="compilerOptions"
+		type="std::string"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	effect compiler options
+	</Field>
+	<Field
+		name="technique"
+		type="Int32"
+		cardinality="single"
+		visibility="external"
+		defaultValue="0"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="parameters"
+		type="ShaderParameterPtr"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="images"
+		type="ImagePtr"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="virtualIncludeFiles"
+		type="ShaderParameterStringPtr"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	used to provide a virtual filesystem of include-files to the cgfx compiler.
+	Useful for clusters, where servers can't load the files themselves.
+	</Field>
+</FieldContainer>

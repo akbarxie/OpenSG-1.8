@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="Slices"
+	parent="MaterialDrawable"
+	library="System"
+	pointerfieldtypes="both"
+	structure="concrete"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+	decoratable="false"
+>
+	<Field
+		name="size"
+		type="Vec3f"
+		cardinality="single"
+		visibility="external"
+		defaultValue="1, 1, 1"
+		access="public"
+	>
+	terrain size in local coords
+	</Field>
+	<Field
+		name="sliceDistance"
+		type="Real32"
+		cardinality="single"
+		visibility="external"
+		defaultValue="100"
+		access="public"
+	>
+	</Field>
+</FieldContainer>

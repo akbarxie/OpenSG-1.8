@@ -1,0 +1,63 @@
+# WindowSystem QT
+
+Import('*')
+
+import os
+
+# add the experimental stuff
+ExperimentalQtDirs = [Dir('../../Experimental/QTWidgets')]
+headers, sources_with_moc, tests, generated = ProcessDirs(ExperimentalQtDirs)
+
+# add local sources
+sources_with_moc += Glob('OSG*.cpp')
+headers += Glob('OSG*.h')
+headers += Glob('OSG*.inl')
+
+# exclude moc.cpp files.
+sources = []
+for source in sources_with_moc:
+    srcname = str(source)
+    if srcname.find('_moc.cpp') < 0:
+        sources.append(source)
+
+InstallHeaders(env, headers)
+
+def custom(env):
+    env.Append(CPPPATH=env.get('QTCPPPATH'))
+    env.Append(LIBPATH=env.get('QTLIBPATH'))
+    env.Append(LIBS=env.get('OSG_WINDOW_QT_LIBS'))
+    CreateMocSources(env, headers)
+
+def custom2(env):
+    env.Append(CPPPATH=env.get('QTCPPPATH'))
+    env.Append(LIBPATH=env.get('QTLIBPATH'))
+    env.Append(LIBS=env.get('OSG_WINDOW_QT_LIBS'))
+    env.Append(LIBS=env.get('OSG_WINDOW_GLUT_LIBS'))
+    env.Append(LIBS=env.get('OSG_SYSTEM_LIBS'))
+    env['OSG_PROGDIR'] = os.path.join('..', 'WindowQtTest')
+
+if tc.is_win32():
+    dep_CPPPATH = ['../WIN32']
+    dep_LIBS    = ['OSGWindowWIN32']
+else:
+    dep_CPPPATH = ['../X']
+    dep_LIBS    = ['OSGWindowX']
+
+if _po.getOption('qt'):
+    BuildLibrary(tc, 'OSGWindowQT', sources, tools=[],
+                 updates=[custom, OpenSGLibrary(dep_LIBS + ['OSGSystem', 'OSGBase'])],
+                 includeGen=1,
+                 CPPPATH = ExpandCPPPath([Dir('.')] + BaseDirs + SystemDirs + ExperimentalQtDirs + map(Dir, dep_CPPPATH)),
+                 CPPDEFINES = ['OSG_BUILD_DLL', 'OSG_COMPILEWINDOWQTLIB',
+                               'OSG_WITH_QT', 'QT_CLEAN_NAMESPACE'])
+
+    if _po.getOption('tests'):
+        # create test programs
+        testsources = Glob('test*.cpp')
+        for testsource in testsources:
+            target = testsource.name[:-4] # get leafname and remove .cpp
+            BuildProgram(tc, target, [testsource], tools=[],
+                         updates=[custom2, OpenSGLibrary(['OSGWindowGLUT', 'OSGSystem', 'OSGBase', 'OSGWindowQT', 'OSGWindowX'])],
+                         CPPPATH=['.', env['PREFIX'].Dir('include'), env['PREFIX'].Dir('include/OpenSG')],
+                         CPPDEFINES = ['OSG_BUILD_DLL', 'QT_CLEAN_NAMESPACE',
+                                       'OSG_WITH_QT', 'OSG_WITH_GLUT'])

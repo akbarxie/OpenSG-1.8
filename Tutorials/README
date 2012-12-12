@@ -1,0 +1,91 @@
+
+  OpenSG Tutorial Examples
+  ========================
+
+These programs show you how to do things in OpenSG. They are not meant to be
+complete applications, they rather demonstrate separate aspects of the
+system and should be used as a starting point for your own tests and
+experiments using OpenSG.
+
+They are all based on the same framework, so you can interact with all of
+them in the same way. The left mouse button rotates the scene, the
+middle button translates, the right button (or both buttons on
+two-button mice) zooms in or out.
+
+The available examples are:
+
+01hello:                  The simplest OpenSG program. Just creates a torus.
+
+02move:                   How to use transformations.
+
+03share:                  Sharing the cores between different nodes.
+
+04hiertransform:          Demonstrates the hierarchical accumulative effects of
+                          multiple transformations.
+
+05geometry:               Simple non-indexed geometry node construction.
+
+06indexgeometry:          Using single indices for geometry.
+
+07multiindexgeometry:     Using multiple indices for different attributes.
+
+08materials:              Creating materials to specify the surface properties
+                          of the objects.
+
+09traverse:               How to traverse the scenegraph and work on the nodes.
+
+10loading:                Loading models.
+
+11picking:                Using a ray test to select objects/faces.
+
+12ClusterServer           A render cluster server (similar to a XServer)
+
+13ClusterClient           Connects to cluster server.
+
+14switch                  This example shows how to use the Switch NodeCore to selectively display one
+                          of a number of children of a node.
+
+15attachments             In many cases there is a need to attach some data to existing structures
+                          instead of deriving new classes. Many systems have a void* userdata 
+                          to do that. OpenSG uses the more flexible concept of Attachments. 
+
+16lights                  This example shows how to create and manipulate light sources.
+
+17deepclone               Shows how to create a copy of a scenegraph.
+
+18openg_slave             It is often necessary to mix non-OpenSG code with OpenSG.
+                          This is a quick way to melt such code-bases together.
+
+19LocalLights             This example shows how to create use local light sources.
+                          It creates four light sources (red, green, blue, white)
+                          each light source lights only its subtree.
+
+20MaterialSort            This example shows how to manually change the render order of materials.
+                          For intersecting geometries transparent sorting doesn't work so
+                          we set for each material a sort key.
+
+21Shadows                 This example shows realtime shadows via shadow maps.
+
+22Shader                  This example shows how to use GLSL shaders.
+                          It creates a bouncing ball animation (completely calculated on the GPU).
+                          You need a graphics card supporting the GL_ARB_shading_language_100 extension
+                          to run this tutorial.
+
+23videotexturebackground  This example shows how to use the TextureBackground to show animated
+                          pictures behind the 3D graphics, and how to do it as efficiently as 
+                          possible.
+
+The directory contains a test image that can be passed to materials to be used
+as a texture: osg_power_trans.rgb, which is the "Powered by OpenSG" logo
+image. 
+
+It also contains two little test models found in the data subdirectory : a set of dolphins in OBJ
+format and a TIE fighter in VRML97 format. loading and picking can load them.
+
+The TIE fighter model was taken from the AC3D website (www.ac3d.org),
+which lists its origin as 'found on the web as VRML'. As it's been
+distributed as part of AC3D for quite a while now, we think that it's ok
+to use it as a simple test model.
+
+The dolphins were downloaded from 3D Cafe (www.3dcafe.com) and converted to
+OBJ offline. Visit them for a lot of other nice models.

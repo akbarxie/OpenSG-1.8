@@ -1,0 +1,278 @@
+
+   How to build OpenSG
+   ===================
+   
+The master document is on the web at
+http://www.opensg.org/prerequisites.EN.html. If in doubt, go there. 
+
+
+On a Unix or Unix-like system it's pretty easy. 
+
+./configure && make && make install 
+
+should work. And as this is based on quite some unix scripts, spaces within
+pathnames might confuse the system. So please do not install OpenSG
+using a path where one or more directory names contain spaces. The same
+holds for most of the places where more than on directory can be 
+given (--with-add-....).
+
+The only things it really depends on are OpenGL (or Mesa) and a decent C++
+compiler (see below for the definition of decent for the different platforms).
+
+However, in general you should configure some additional libraries. The most
+important is the GLUT library, as all of the tutorials and most of the tests
+depend on it. Other useful libraries are tif, jpg, png and qt. The library
+works with any QT >= 2, but the SceneViewer example needs 3, so it is
+recommended to use 3.
+
+To tell configure what libraries to use --enable-<lib> and, if necessary, 
+where to find them use the --with-<lib>{libdir|includedir}=<dir> options. 
+Call ./configure --help to see all the options available.
+
+A typical configure call would look like this:
+
+./configure --enable-glut --enable-jpg --enable-png \
+    --enable-qt --with-qt=/usr/lib/qt3
+
+on IRIX you might go for something like this:
+
+./configure --enable-glut --with-glut=/usr/local                 \
+    --with-glutlibdir=/usr/local/lib32 --enable-jpg --enable-png \
+    --enable-qt --with-qt=/somewhere/qt-3.0
+
+
+configure creates a subdirectory in Builds, whose name
+depends on the current system, e.g. Builds/mips-sgi-irix6.5-CC, and which
+will contain all system-dependent files. This allows concurrent development on
+multiple different systems in one directory tree.
+
+Go into this directory and call make to create the libraries. To
+find out which make targets are available call make help. This is
+possible in all directories of the system which contain a makefile.
+
+There are different libraries that make up the whole system:
+
+Base: the low-level support library. Contains elementary stuff like basic
+types, vectors, matrices, quaternions, bounding volumes and the OS
+abstractions.
+
+System: the central library, containing the main scenegraph, all the nodes
+and higher-level objects.
+
+WindowGLUT: a little library that contains the OpenSG-GLUT
+interface object
+
+WindowX: a little library that contains the OpenSG-X interface
+object
+
+WindowWIN32: a little library that contains the OpenSG-WIN32
+interface object
+
+WindowQT: a little library that contains the OpenSG-QT interface
+object
+
+
+After the libraries are built install them by calling make install. The
+libraries will be installed in the directory hierarchy defined by the --prefix
+option given to configure, per default /usr/local. Include files will go into
+prefix/include/OpenSG, libs into prefix/lib/dbg or prefix/lib/opt. The
+osg-config script, which can be used to simplify OpenSG makefiles, goes into
+prefix/bin.
+
+One useful variant is to install into the system-dependent directory in
+Builds by using BUILD as the prefix (i.e. call configure with --prefix=BUILD).
+When running make install everything will be installed in 
+Builds/<system>/{include,lib,bin}, allowing parallel development on multiple
+platforms.
+
+To run OpenSG programs, make sure that the directory where the libraries are
+installed is in your LD_LIBRARY_PATH. 
+
+For bash/ksh users do a 
+
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:<prefix>/lib/{dbg,opt}
+
+For csh/tcsh users do a 
+
+setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:<prefix>/lib/{dbg,opt}
+
+while replacing <prefix> with your install prefix and {dbg,opt} with dbg or
+opt, depending on which kind of library you created.
+
+After making the libraries you should make the tutorial examples. They are
+in OpenSG/Tutorials. For Unix systems a simple make should do, 
+for Windows it's probably easier to download a binary release and start with 
+that.
+
+As a somewhat bigger example program there's OpenSG/examples/SceneViewer. It
+needs QT 3, and it needs QTDIR to be set to directory where QT is installed.
+Given that, a simple make should be enough to create it.
+
+There are also a bunch of tests that can be created in the *Test directory
+for each library. These are internal tests to see if the system does what it's
+supposed to do and not tutorials, thus they don't necessarily show the right way
+of doing things. Use them just if you can't find an example for what you want to
+do in the tutorials.
+
+
+
+Now the general requirements:
+
+gmake : >= 3.79.1
+
+Now the platform-specific requirements:
+
+IRIX
+====
+
+Compiler : > MIPS Pro 7.3.*
+             use --with-compiler=CC
+Make     : > gmake 3.79.1
+glut     : 3.7
+
+
+Linux
+=====
+
+Compiler :   gcc 2.95.>=3
+             gcc 3.x
+             Intel icc 5.0x and 6.0
+
+Standard systems:
+RH 7.0: needs patches gcc/RHBA-2000-132, glibc/RHBA-2000-079
+RH 7.1: out of the box
+RH >=7.2: out of the box, including all updates available
+SuSe >=7.1: out of the box
+
+Windows
+=======
+
+IDE      : MSVC 6, the *.dsw/*.dsp file in VSBuild are setup to build
+           the debug libs using intels c++ compiler, please check the
+           README there
+
+           MSVC 7, similar to 6, but you don't need the Intel compiler,
+           see the README in VSBuild/VS7
+
+Compiler : Intel C++ > 5.0 + latest patchset or VS7
+           use --with-compiler={icl|icl50|icl60|icl70|cl.net|cl.net2003}
+           
+Cygwin   : any quite current version should work
+gmake    : > 3.79.1
+glut     : 3.7
+autoconf : > 2.13 (only needed when you want to work on the configure scripts)
+STL      : The current default is the original Microsoft 
+           implementation. Since there where some problems using
+           other implementations and the MSVC runtime libraries.
+           
+MSVC7(aka .Net) : Ok, we finally got OpenSG running using Microsfts VC7
+                  compiler. 
+
+                  use --with-compiler=cl.net if you have version 7.0 installed
+                  and --with-compiler=cl.net2003 if you have version 7.1 
+                  (aka Visual Studio .NET 2003)
+
+                  Two current problems :
+
+                  - OpenSG must be configured using --enable-win-localstorage
+                  - The dependendies do not work as I haven't figured out
+                    how to get some usefull information from the compiler,
+                    so OSGNODEPS=1 (env var) has to be set.
+   
+                  If you want to try it, keep in mind to contact me in
+                  case of troubles (vossg@camtech.ntu.edu.sg) as this is 
+                  still some kind of experimental
+
+                  You might have to add the Common7/IDE directory to your path if
+                  the mspdb70.dll is not found, e.g.
+                  export PATH="/cygdrive/e/Program Files/Microsoft Visual Studio .NET/Common7/IDE:$PATH"
+
+MSVC.Net + icl : Without patches to the VC7 headers, icl60 throws some
+                 errors within winbase.h and the stl implementation. 
+                 Looks similar to the sdk problem, or I am missing some
+                 defines to be set. working on a solution (aka patch set).
+
+INCLUDE/LIB : As these env vars are the MS way to pass default directories
+              to the compiler they must be setup correctly. As there are to 
+              many compiler/include dir/lib dir configurations we rely on them
+              being set as wanted correctly.
+              A typical setup would be:
+              export "INCLUDE=e:\Program Files\Microsoft Visual Studio .NET\Vc7\PlatformSDK\include;$INCLUDE"
+              export "LIB=e:\Program Files\Microsoft Visual Studio .NET\Vc7\PlatformSDK\lib;$LIB"
+            
+
+MS SDK : last time I checked there were some problems using the MS SDK
+         headers in combination with intels c++ compiler. In case you
+         get some errors check if the following might help :
+
+         replace line 1175 within Microsoft SDK/Include/WinBase.h with the
+         following : 
+
+         return((LONG)InterlockedCompareExchange((VOID volatile *)Destination, ExChange, Comperand)); 
+
+         but please check beforehand if the orginal line contains the 
+         InterlockedCompareExchange call too.
+
+MacOSX 
+=======
+
+Compiler : tested with gcc-934.3 (ProjectBuilder 1.1.1 installed)
+           use --with-compiler={c++|g++|c++3|g++3}
+gmake    : > 3.79.1
+QT       : does not work yet
+
+Problems : due to bugs in the codegenerator only static libs can be build,
+           as soon as I get a small example running I'll try to contact
+           Apple.
+
+           If you want to try it, keep in mind to contact me in
+           case of troubles (vossg@camtech.ntu.edu.sg) as this is still
+           kind of experimental
+
+
+Documentation :
+===============
+
+And last, if you like it and want to get a deeper insight build the
+documentation to get an overview over the different parts of the system. 
+While we did spent a lot of time on the documentation this time, it is probably
+not complete, but it should help getting around the system a lot more than it
+used to.
+
+There are two levels of documentation, the user and the developer level. The
+user level excludes some of the internal classes and descriptions that you need
+when you want to extend the system or understand how it works.
+
+You can create the documentation by calling
+
+    make userdoc
+
+or
+
+    make devdoc
+
+This uses doxygen to create documentation in Doc/Code/{user,dev}/html. We use
+version 1.3-rc3, which is pretty new. We have also added a small enhancement, which
+will prevent a lot of our internal classes to show up in the Class Hierarchy.
+If you use a stock version of doxygen you might get some "hideinhierarchy"
+comments somewhere, you can just ignore these. Or download a prebuilt
+documentation. ;)
+
+There is a workaround for typedefed templates not showing up as classes.
+It tricks doxygen into seeing classes that aren't there. So don't be
+surprised if you see classes in the documentation that are not in the
+code.
+
+We have some text description of concepts and general class structure in the
+Related Pages section of the doxygen output. These can also be collected as a
+single document, called the Starter Guide. 
+
+You can create it by calling "make userstarter" or "make devstarter", which
+will create them in Doc/Code/{user,dev}/latex/StarterGuide.{pdf,ps}
+
+
+Question/Comments? 
+
+Mail to feedback@opensg.org.
+
+   

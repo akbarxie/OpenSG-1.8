@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<FieldContainer
+	name="CGChunk"
+	parent="ShaderChunk"
+	library="Contrib"
+	pointerfieldtypes="both"
+	structure="concrete"
+	systemcomponent="true"
+	parentsystemcomponent="true"
+	decoratable="false"
+	useLocalIncludes="false"
+>
+	<Field
+		name="vertexProfile"
+		type="UInt32"
+		cardinality="single"
+		visibility="external"
+		defaultValue="6145"
+		access="public"
+	>
+	vertex profile
+	</Field>
+	<Field
+		name="fragmentProfile"
+		type="UInt32"
+		cardinality="single"
+		visibility="external"
+		defaultValue="6145"
+		access="public"
+	>
+	vertex profile
+	</Field>
+	<Field
+		name="vertexEntryPoint"
+		type="std::string"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="vertexArguments"
+		type="std::string"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="fragmentEntryPoint"
+		type="std::string"
+		cardinality="single"
+		visibility="external"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="fragmentArguments"
+		type="std::string"
+		cardinality="multi"
+		visibility="external"
+		access="public"
+	>
+	</Field>
+	<Field
+		name="GLId"
+		type="UInt32"
+		cardinality="single"
+		visibility="internal"
+		access="public"
+	>
+	</Field>
+</FieldContainer>

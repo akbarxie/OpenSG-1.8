@@ -26,7 +26,7 @@ DARWINVERSION := $(shell uname -r | cut -d'.' -f 1)
 
 ### Compiler Version ##############################################
 
-COMPILER := $(shell $(CC) -v 2>&1 | fgrep version  | cut -d' ' -f 3)
+COMPILER := $(shell $(CC) -v 2>&1 | fgrep "gcc version"  | cut -d' ' -f 3)
 
 ifneq ($(COMPILER),)
 COMPILERVERSION := $(shell echo $(COMPILER) | cut -d '.' -f 1)

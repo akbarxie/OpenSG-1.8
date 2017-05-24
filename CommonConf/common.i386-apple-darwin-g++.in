@@ -34,7 +34,7 @@ else
 COMPILERVERSION :=
 endif
 
-COMPILERVERSION := $(if $(COMPILERVERSION),$(COMPILERVERSION),$(error could not determine compiler version))
+#COMPILERVERSION := $(if $(COMPILERVERSION),$(COMPILERVERSION),$(error could not determine compiler version))
 
 $(warning Got Compiler Version : $(COMPILERVERSION))
 

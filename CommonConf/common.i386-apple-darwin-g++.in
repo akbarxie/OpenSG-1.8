@@ -83,9 +83,10 @@ ifeq ($(LNK),)
 COMPILER           := $(COMPILER) -fno-common -fPIC 
 endif
 
-ifneq ($(COMPILERVERSION), 4)
-COMPILER           := $(COMPILER) -fexport-coalesced
-endif
+# Fix for newer Apple clang
+#ifneq ($(COMPILERVERSION), 4)
+#COMPILER           := $(COMPILER) -fexport-coalesced
+#endif
 
 ### Optimize / Debug ###############################################
 
